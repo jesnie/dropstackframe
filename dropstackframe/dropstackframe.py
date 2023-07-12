@@ -29,7 +29,6 @@ def set_enable_drop_stack_frame(enabled: bool) -> ContextManager[None]:
     is left.
     """
 
-
     global _enabled
     old_enabled = _enabled
     _enabled = enabled
