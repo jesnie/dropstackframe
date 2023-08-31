@@ -12,27 +12,25 @@ repository = "https://github.com/jesnie/dropstackframe"
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
+    "Typing :: Typed",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.7",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
-    "Typing :: Typed",
 ]
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "<4,>=3.10"
 
 
 [tool.poetry.group.dev.dependencies]
-pytest = "^7.4.0"
-isort = "<5.12.0"
-black = "<23.7.0"
-mypy = "^1.4.1"
-pylint = "<2.17.0"
-taskipy = "^1.11.0"
-toml = "^0.10.2"
+black = "<23.8,>=23.7"
+compreq = "<0.1.1,>=0.1.0"
+isort = "<5.13,>=5.12"
+mypy = "<1.6,>=1.5"
+pylint = "<2.18,>=2.17"
+pytest = "<7.5,>=7.4"
+taskipy = "<1.13,>=1.12"
+tomlkit = "<0.12.2,>=0.12.1"
 
 [build-system]
 requires = ["poetry-core"]
@@ -40,22 +38,21 @@ build-backend = "poetry.core.masonry.api"
 
 
 [tool.isort]
-py_version=37
-profile="black"
+py_version = 310
+profile = "black"
 
 [tool.black]
-target-version = ['py37']
+target-version = ["py310"]
 line-length = 100
 
 [tool.mypy]
-python_version = "3.7"
+python_version = "3.10"
 show_error_codes = true
 strict = true
 
 [[tool.mypy.overrides]]
 module = [
     "_testcapi.*",
-    "toml.*",
 ]
 ignore_missing_imports = true
 
@@ -65,35 +62,36 @@ disable = [
     "c-extension-no-member",
     "global-statement",
     "invalid-name",
-    "missing-module-docstring",
     "missing-function-docstring",
+    "missing-module-docstring",
+    "no-member",
 ]
 
 
 [tool.taskipy.tasks]
 isort = """
     echo XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX isort XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    isort dropstackframe tests set_version.py
+    isort dropstackframe tests set_version.py requirements.py
 """
 isort_check = """
     echo XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX isort XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    isort --check-only dropstackframe tests set_version.py
+    isort --check-only dropstackframe tests set_version.py requirements.py
 """
 black = """
     echo XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX black XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    black dropstackframe tests set_version.py
+    black dropstackframe tests set_version.py requirements.py
 """
 black_check = """
     echo XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX black XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    black --check dropstackframe tests set_version.py
+    black --check dropstackframe tests set_version.py requirements.py
 """
 mypy = """
     echo XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX mypy XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    mypy dropstackframe tests set_version.py
+    mypy dropstackframe tests set_version.py requirements.py
 """
 pylint = """
     echo XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX pylint XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    pylint dropstackframe tests set_version.py
+    pylint dropstackframe tests set_version.py requirements.py
 """
 pytest = """
     echo XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX pytest XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -104,4 +102,5 @@ format = "task isort && task black"
 format_check = "task isort_check && task black_check"
 lint = "task format_check && task mypy && task pylint"
 test = "task lint && task pytest"
-format_and_test = "task format && task mypy && task test"
+format_and_lint = "task format && task lint"
+format_and_test = "task format && task test"
