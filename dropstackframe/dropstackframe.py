@@ -1,6 +1,7 @@
 """
 Code for dropping stack frames from stack traces.
 """
+
 from contextlib import contextmanager
 from typing import ContextManager, Iterator
 
