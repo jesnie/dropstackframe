@@ -24,14 +24,14 @@ python = "<4,>=3.10"
 
 
 [tool.poetry.group.dev.dependencies]
-black = "<24.3,>=24.2"
+black = "<24.5,>=24.4"
 compreq = "<0.3.1,>=0.3.0"
 isort = "<5.14,>=5.13"
-mypy = "<1.9,>=1.8"
-pylint = "<3.2,>=3.1"
-pytest = "<8.1,>=8.0"
-taskipy = "<1.13,>=1.12"
-tomlkit = "<0.12.4,>=0.12.3"
+mypy = "<1.11,>=1.10"
+pylint = "<3.3,>=3.2"
+pytest = "<8.3,>=8.2"
+taskipy = "<1.14,>=1.13"
+tomlkit = "<0.12.6,>=0.12.5"
 
 [build-system]
 requires = ["poetry-core"]
