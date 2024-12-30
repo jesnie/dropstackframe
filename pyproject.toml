@@ -17,6 +17,7 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
 ]
 
 [tool.poetry.dependencies]
@@ -24,14 +25,14 @@ python = "<4,>=3.10"
 
 
 [tool.poetry.group.dev.dependencies]
-black = "<24.9,>=24.8"
+black = "<24.11,>=24.10"
 compreq = "<0.3.2,>=0.3.1"
 isort = "<5.14,>=5.13"
-mypy = "<1.12,>=1.11"
-pylint = "<3.3,>=3.2"
+mypy = "<1.15,>=1.14"
+pylint = "<3.4,>=3.3"
 pytest = "<8.4,>=8.3"
-taskipy = "<1.14,>=1.13"
-tomlkit = "<0.13.1,>=0.13.0"
+taskipy = "<1.15,>=1.14"
+tomlkit = "<0.13.3,>=0.13.2"
 
 [build-system]
 requires = ["poetry-core"]
