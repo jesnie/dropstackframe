@@ -48,27 +48,27 @@ def _baz(should_raise: bool) -> int:
 
 
 def test_drop_stack_frame() -> None:
-    assert 42 == _baz(should_raise=False)
+    assert _baz(should_raise=False) == 42
 
     with pytest.raises(AssertionError) as excinfo:
         _baz(should_raise=True)
-    assert [
+    assert [tb.name for tb in excinfo.traceback] == [
         "test_drop_stack_frame",
         "_baz",
         # "_bar" should be dropped...
         "_foo",
-    ] == [tb.name for tb in excinfo.traceback]
+    ]
 
 
 def test_drop_stack_frame__disabled() -> None:
     with set_enable_drop_stack_frame(False):
-        assert 42 == _baz(should_raise=False)
+        assert _baz(should_raise=False) == 42
 
         with pytest.raises(AssertionError) as excinfo:
             _baz(should_raise=True)
-        assert [
+        assert [tb.name for tb in excinfo.traceback] == [
             "test_drop_stack_frame__disabled",
             "_baz",
             "_bar",
             "_foo",
-        ] == [tb.name for tb in excinfo.traceback]
+        ]

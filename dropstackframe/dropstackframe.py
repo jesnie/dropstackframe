@@ -2,13 +2,13 @@
 Code for dropping stack frames from stack traces.
 """
 
-from contextlib import contextmanager
-from typing import ContextManager, Iterator
+from collections.abc import Iterator
+from contextlib import AbstractContextManager, contextmanager
 
 _enabled = True
 
 
-def set_enable_drop_stack_frame(enabled: bool) -> ContextManager[None]:
+def set_enable_drop_stack_frame(enabled: bool) -> AbstractContextManager[None]:
     """Sets whether `drop_stack_frame` is enabled or not.
 
     If `set_enable_drop_stack_frame(False)` then `drop_stack_frame()` has no effect.  This can be
@@ -80,9 +80,8 @@ def drop_stack_frame() -> None:
 try:
     # pylint: disable=function-redefined
 
-    import sys
-
     import _testcapi
+    import sys
 
     DROP_STACK_FRAME_SUPPORTED = True
 
