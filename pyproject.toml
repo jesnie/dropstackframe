@@ -1,6 +1,6 @@
 [project]
 name = "dropstackframe"
-requires-python = "<4,>=3.10"
+requires-python = "<4,>=3.11"
 version = "0.1.0"
 description = "A python package for removing stack frames from stack traces."
 authors = [
@@ -16,18 +16,18 @@ classifiers = [
     "Intended Audience :: Developers",
     "Typing :: Typed",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
 ]
 
 [dependency-groups]
 dev = [
     "compreq<0.4.1,>=0.4.0",
-    "mypy<1.18,>=1.17",
-    "pytest<8.5,>=8.4",
-    "ruff<0.12.10,>=0.12.9",
+    "mypy<1.20,>=1.19",
+    "pytest<9.1,>=9.0",
+    "ruff<0.14.12,>=0.14.11",
     "taskipy<1.15,>=1.14",
     "tomlkit<0.13.4,>=0.13.3",
 ]
@@ -90,7 +90,7 @@ ignore = [
 ]
 
 [tool.mypy]
-python_version = "3.10"
+python_version = "3.11"
 show_error_codes = true
 # First we turn on *all the checks*, and then we turn off those that are too annoying.
 strict = true
